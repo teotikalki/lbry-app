@@ -12,11 +12,11 @@ Web UI version numbers should always match the corresponding version of LBRY App
   *
 
 ### Changed
-  *
+  * Upgraded daemon to 0.16.3, to fix and better detect download issues.
   *
 
 ### Fixed
-  *
+  * Fixed issues with minimum publish amounts (#628)
   *
 
 ### Deprecated
