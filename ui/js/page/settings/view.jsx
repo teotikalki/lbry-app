@@ -196,7 +196,6 @@ class SettingsPage extends React.PureComponent {
               {!daemonSettings.disable_max_key_fee &&
                 <FormFieldPrice
                   min="0"
-                  step="1"
                   onChange={this.onKeyFeeChange.bind(this)}
                   defaultValue={
                     daemonSettings.max_key_fee
