@@ -27,6 +27,8 @@ const FileListSearchResults = props => {
   const rows = [],
     seenNames = {}; //fix this when the search API returns claim IDs
 
+  console.log(results);
+
   for (let {
     name,
     claim,
