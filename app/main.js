@@ -2,6 +2,7 @@ const {app, BrowserWindow, ipcMain} = require('electron');
 const url = require('url');
 const isDebug = process.env.NODE_ENV === 'development';
 const setMenu = require('./menu/main-menu.js');
+const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 
 if (isDebug) {
   try
@@ -253,6 +254,14 @@ if (isSecondaryInstance) { // We're not in the original process, so quit
 app.on('ready', function(){
   launchDaemonIfNotRunning();
   createWindow();
+});
+
+app.on('ready', () => {
+  [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS].forEach(extension => {
+    installExtension(extension)
+      .then((name) => console.log(`Added Extension: ${name}`))
+      .catch((err) => console.log('An error occurred: ', err));
+  });
 });
 
 function launchDaemonIfNotRunning() {

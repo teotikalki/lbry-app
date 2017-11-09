@@ -8,6 +8,7 @@ import FormFieldPrice from "component/formFieldPrice";
 import Modal from "modal/modal";
 import { BusyMessage } from "component/common";
 import ChannelSection from "./internal/channelSection";
+import FormFieldThumbnail from '../formFieldThumbnail/view'
 
 class PublishForm extends React.PureComponent {
   constructor(props) {
@@ -573,6 +574,7 @@ class PublishForm extends React.PureComponent {
                     />
                   </div>
                   <div className="card__content">
+                    <FormFieldThumbnail />
                     <FormRow
                       type="text"
                       label={__("Thumbnail URL")}
