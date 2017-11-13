@@ -8,7 +8,7 @@ import { selectMyClaimsRaw } from "redux/selectors/claims";
 import { selectBalance } from "redux/selectors/wallet";
 import {
   makeSelectFileInfoForUri,
-  selectDownloadingByOutpoint,
+  selectDownloadingBySdHash,
 } from "redux/selectors/file_info";
 import { selectResolvingUris } from "redux/selectors/content";
 import { makeSelectCostInfoForUri } from "redux/selectors/cost_info";
@@ -139,12 +139,13 @@ export function doFetchRewardedContent() {
   };
 }
 
-export function doUpdateLoadStatus(uri, outpoint) {
+export function doUpdateLoadStatus(uri, outpoint, sd_hash) {
   return function(dispatch, getState) {
     const state = getState();
 
     lbry
       .file_list({
+        sd_hash: sd_hash,
         outpoint: outpoint,
         full_status: true,
       })
@@ -152,7 +153,7 @@ export function doUpdateLoadStatus(uri, outpoint) {
         if (!fileInfo || fileInfo.written_bytes == 0) {
           // download hasn't started yet
           setTimeout(() => {
-            dispatch(doUpdateLoadStatus(uri, outpoint));
+            dispatch(doUpdateLoadStatus(uri, outpoint, sd_hash));
           }, DOWNLOAD_POLL_INTERVAL);
         } else if (fileInfo.completed) {
           // TODO this isn't going to get called if they reload the client before
@@ -161,8 +162,8 @@ export function doUpdateLoadStatus(uri, outpoint) {
             type: types.DOWNLOADING_COMPLETED,
             data: {
               uri,
-              outpoint,
               fileInfo,
+              sd_hash,
             },
           });
 
@@ -188,9 +189,9 @@ export function doUpdateLoadStatus(uri, outpoint) {
             type: types.DOWNLOADING_PROGRESSED,
             data: {
               uri,
-              outpoint,
               fileInfo,
               progress,
+              sd_hash,
             },
           });
 
@@ -198,14 +199,14 @@ export function doUpdateLoadStatus(uri, outpoint) {
           setProgressBar(totalProgress);
 
           setTimeout(() => {
-            dispatch(doUpdateLoadStatus(uri, outpoint));
+            dispatch(doUpdateLoadStatus(uri, outpoint, sd_hash));
           }, DOWNLOAD_POLL_INTERVAL);
         }
       });
   };
 }
 
-export function doStartDownload(uri, outpoint) {
+export function doStartDownload(uri, outpoint, sd_hash) {
   return function(dispatch, getState) {
     const state = getState();
 
@@ -213,22 +214,24 @@ export function doStartDownload(uri, outpoint) {
       throw new Error("outpoint is required to begin a download");
     }
 
-    const { downloadingByOutpoint = {} } = state.fileInfo;
+    const { downloadingBySdHash = {} } = state.fileInfo;
 
-    if (downloadingByOutpoint[outpoint]) return;
+    if (downloadingBySdHash[sd_hash]) return;
 
-    lbry.file_list({ outpoint, full_status: true }).then(([fileInfo]) => {
-      dispatch({
-        type: types.DOWNLOADING_STARTED,
-        data: {
-          uri,
-          outpoint,
-          fileInfo,
-        },
+    lbry
+      .file_list({ sd_hash, outpoint, full_status: true })
+      .then(([fileInfo]) => {
+        dispatch({
+          type: types.DOWNLOADING_STARTED,
+          data: {
+            uri,
+            fileInfo,
+            sd_hash,
+          },
+        });
+
+        dispatch(doUpdateLoadStatus(uri, outpoint, sd_hash));
       });
-
-      dispatch(doUpdateLoadStatus(uri, outpoint));
-    });
   };
 }
 
@@ -236,7 +239,7 @@ export function doDownloadFile(uri, streamInfo) {
   return function(dispatch, getState) {
     const state = getState();
 
-    dispatch(doStartDownload(uri, streamInfo.outpoint));
+    dispatch(doStartDownload(uri, streamInfo.outpoint, streamInfo.sd_hash));
 
     lbryio
       .call("file", "view", {
@@ -303,9 +306,9 @@ export function doPurchaseUri(uri) {
     const state = getState();
     const balance = selectBalance(state);
     const fileInfo = makeSelectFileInfoForUri(uri)(state);
-    const downloadingByOutpoint = selectDownloadingByOutpoint(state);
+    const downloadingBySdHash = selectDownloadingBySdHash(state);
     const alreadyDownloading =
-      fileInfo && !!downloadingByOutpoint[fileInfo.outpoint];
+      fileInfo && !!downloadingBySdHash[fileInfo.sd_hash];
 
     function attemptPlay(cost, instantPurchaseMax = null) {
       if (cost > 0 && (!instantPurchaseMax || cost > instantPurchaseMax)) {
