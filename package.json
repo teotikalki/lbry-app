@@ -66,6 +66,7 @@
       "perMachine": true
     }
   },
+  "postinstall": "install-app-deps",
   "devDependencies": {
     "devtron": "^1.4.0",
     "electron": "^1.7.9",

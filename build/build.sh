@@ -97,14 +97,6 @@ echo -e '\033[0;32mBuilding Lbry-app\x1b[m'
 (
   cd "$ROOT/src/main"
   yarn install
-
-  # necessary to ensure native Node modules (e.g. keytar) are built against the correct version of Node)
-  # yes, it needs to be run twice. it fails the first time, not sure why
-  set +e
-  # DEBUG=electron-rebuild node_modules/.bin/electron-rebuild .
-  node_modules/.bin/electron-rebuild "$ROOT/src/main"
-  set -e
-  node_modules/.bin/electron-rebuild "$ROOT/src/main"
 )
 
 if [ "$FULL_BUILD" == "true" ]; then
