@@ -6,6 +6,7 @@ import {
   clearShapeShift,
   getActiveShift,
 } from "redux/actions/shape_shift";
+import { doShowSnackBar } from "redux/actions/app";
 import { selectReceiveAddress } from "redux/selectors/wallet";
 import { selectShapeShift } from "redux/selectors/shape_shift";
 import ShapeShift from "./view";
@@ -21,4 +22,5 @@ export default connect(select, {
   createShapeShift,
   clearShapeShift,
   getActiveShift,
+  doShowSnackBar,
 })(ShapeShift);

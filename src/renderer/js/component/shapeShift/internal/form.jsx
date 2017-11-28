@@ -21,7 +21,7 @@ export default ({
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-field">
-        <span>Exchange </span>
+        <span>{__("Exchange")} </span>
         <select
           className="form-field__input form-field__input-select"
           name="originCoin"
@@ -36,7 +36,7 @@ export default ({
             </option>
           ))}
         </select>
-        <span> for LBC</span>
+        <span> {__("for LBC")}</span>
         <p className="shapeshift__maxdeposit help">
           {!updating &&
             originCoinDepositLimit &&
@@ -46,7 +46,10 @@ export default ({
         </p>
       </div>
 
-      <div className="shapeshift__origin-address">
+      <div>
+        <label>
+          {__("Return address")} ({__("optional but recommended")})
+        </label>
         <input
           type="text"
           name="returnAddress"
@@ -56,27 +59,27 @@ export default ({
           value={values.returnAddress}
           className="wunderbar__input wunderbar__input--shapeshift"
         />
-        <label>
-          <span className="help">
-            {__("Return address")}
-            <br />
-            <span>moar label</span>
+        <span className="help">
+          <span>
+            We will return your {originCoin} to this address if the transaction
+            doesn't go through.
           </span>
-        </label>
+        </span>
         <p className="shapeshift__error">
           {touched.returnAddress &&
             errors.returnAddress &&
             errors.returnAddress}
         </p>
       </div>
-
-      <Link
-        actualButton
-        button="primary"
-        type="submit"
-        label={__("Begin Conversion")}
-        disabled={isSubmitting}
-      />
+      <div className="shapeshift__submit">
+        <Link
+          actualButton
+          button="primary"
+          type="submit"
+          label={__("Begin Conversion")}
+          disabled={isSubmitting || !!Object.keys(errors).length}
+        />
+      </div>
     </form>
   );
 };

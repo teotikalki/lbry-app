@@ -1,5 +1,5 @@
 .shapeshift__wrapper.shapeshift__initial-wrapper {
-  min-height: 321px;
+  min-height: 311px;
 }
 
 .shapeshift__content {
@@ -13,10 +13,10 @@
 }
 
 .shapeshift__error {
-  min-height: 25px;
   color: var(--color-error);
 }
 
+.shapeshift__error,
 .shapeshift__maxdeposit {
   min-height: 25px;
 }
@@ -44,23 +44,20 @@
   margin-left: 40px;
 }
 
-.shapeshift__origin-address {
-  padding: 10px 0;
-}
-
-.shapeshift__return-adr,
-.shapeshift__link {
-  color: var(--text-color);
-}
-
-.shapeshift__actions {
-  align-self: flex-end;
-}
-
-.shapeshift__received {
+.shapeshift__received,
+.shapeshift__complete {
   padding: 20px 0;
 }
 
+.shapeshift__actions {
+  padding-top: 20px;
+}
+
+.shapeshift__submit,
+.shapeshift__actions-help {
+  padding-top: 10px;
+}
+
 .shapeshift__link {
-  margin-top: 20px;
+  padding-left: 10px;
 }

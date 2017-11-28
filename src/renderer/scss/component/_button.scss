@@ -104,16 +104,3 @@ button:disabled {
   pointer-events: none;
   opacity: 0.5;
 }
-
-.button--fakelink {
- border: none;
- background-color: inherit;
- font-size: inherit;
- padding: inherit;
- margin: inherit;
- color: var(--button-primary-bg);
-
- &:hover {
-   cursor: pointer;
- }
-}

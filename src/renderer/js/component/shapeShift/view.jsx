@@ -2,8 +2,8 @@ import React from "react";
 import { shell } from "electron";
 import { Formik } from "formik";
 import classnames from "classnames";
-import { validateShapeShiftForm } from "util/shape_shift";
 import * as statuses from "constants/shape_shift";
+import { validateShapeShiftForm } from "util/shape_shift";
 import Link from "component/link";
 import Spinner from "component/common/spinner";
 import { BusyMessage } from "component/common";
@@ -31,6 +31,7 @@ class ShapeShift extends React.PureComponent {
       shapeShift,
       clearShapeShift,
       getActiveShift,
+      doShowSnackBar,
     } = this.props;
 
     const {
@@ -48,13 +49,12 @@ class ShapeShift extends React.PureComponent {
       shiftCoinType,
       shiftOrderId,
       cancelShapeShift,
-      shifting,
       shiftState,
     } = shapeShift;
 
     return (
       // add the "shapeshift__intital-wrapper class so we can avoid content jumping once everything loads"
-      // it just gives the section a min-height equal to the height of the content with the form rendered
+      // it just gives the section a min-height equal to the height of the content when the form is rendered
       // there is probably a better way to do this, but it looks pretty nice
       <section
         className={classnames("card shapeshift__wrapper", {
@@ -63,11 +63,11 @@ class ShapeShift extends React.PureComponent {
       >
         <div className="card__title-primary">
           <div className="display-inline-block">
-            <h3 className="display-inline">{__("Convert crypto to LBC")}</h3>
+            <h3 className="display-inline">{__("Convert Crypto to LBC")}</h3>
             {!hasActiveShift && (
               <p className="help">
-                Powered by ShapeShift. Read our FAQ{" "}
-                <Link onClick={() => {}}>here</Link>.
+                {__("Powered by ShapeShift. Read our FAQ")}{" "}
+                <Link onClick={() => {}}>{__("here")}</Link>.
               </p>
             )}
             {hasActiveShift &&
@@ -114,6 +114,7 @@ class ShapeShift extends React.PureComponent {
               shiftOrderId={shiftOrderId}
               shiftState={shiftState}
               clearShapeShift={clearShapeShift}
+              doShowSnackBar={doShowSnackBar}
             />
           )}
         </div>

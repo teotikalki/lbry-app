@@ -44,9 +44,9 @@ const Link = props => {
     );
   }
 
-  // needed for type="submit" form submission to work
-  // this should probably just go off the "href" prop
-  // when we do that we need to check all of the buttons/links that aren't supposed to look like buttons
+  // An acutal button is needed to use type="submit" for form submission
+  // this should probably just go off an "href" prop
+  // if we do that we will need to check all of the buttons that aren't supposed to look like buttons
   const WrapperEl = actualButton ? "button" : "a";
 
   return (

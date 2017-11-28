@@ -18,7 +18,7 @@ export const shapeShiftInit = () => dispatch => {
         }
       });
 
-      // filter out coins without client validation to be cautious
+      // only use larger coins with client side validation
       supportedCoins = supportedCoins
         .filter(coin => coinRegexPatterns[coin.symbol])
         .map(coin => coin.symbol);

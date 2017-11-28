@@ -5,14 +5,11 @@ import * as statuses from "constants/shape_shift";
 const defaultState = {
   loading: true,
   updating: false,
-  shifting: false,
   error: undefined,
   shiftSupportedCoins: [],
   originCoin: undefined,
   hasActiveShift: false,
-  // shapeshift address to send your coins to
-  shiftDepositAddress: undefined,
-  // your address you are sending coins from
+  shiftDepositAddress: undefined, // shapeshift address to send your coins to
   shiftReturnAddress: undefined,
   shiftCoinType: undefined,
   shiftOrderId: undefined,
@@ -22,8 +19,7 @@ const defaultState = {
 
 export default handleActions(
   {
-    [types.GET_SUPPORTED_COINS_START]: (state, action) => ({
-      ...state,
+    [types.GET_SUPPORTED_COINS_START]: () => ({
       loading: true,
       error: undefined,
     }),
@@ -31,18 +27,15 @@ export default handleActions(
       state,
       { data: shiftSupportedCoins }
     ) => ({
-      ...state,
       error: undefined,
       shiftSupportedCoins,
     }),
-    [types.GET_SUPPORTED_COINS_FAIL]: (state, action) => ({
-      ...state,
+    [types.GET_SUPPORTED_COINS_FAIL]: () => ({
       loading: false,
       error: true,
     }),
 
     [types.GET_COIN_STATS_START]: (state, { data: coin }) => ({
-      ...state,
       updating: true,
       originCoin: coin,
     }),
@@ -50,28 +43,22 @@ export default handleActions(
       state,
       { data: originCoinDepositLimit }
     ) => ({
-      ...state,
       loading: false,
       updating: false,
       originCoinDepositLimit,
     }),
     [types.GET_COIN_STATS_FAIL]: (state, { data: error }) => ({
-      ...state,
       loading: false,
       error,
     }),
 
-    [types.PREPARE_SHAPE_SHIFT_START]: state => ({
-      ...state,
-      shifting: true,
+    [types.PREPARE_SHAPE_SHIFT_START]: () => ({
       error: undefined,
     }),
     [types.PREPARE_SHAPE_SHIFT_SUCCESS]: (
       state,
       { data: { deposit, depositType, returnAddress, orderId } }
     ) => ({
-      ...state,
-      shifting: false,
       hasActiveShift: true,
       shiftDepositAddress: deposit,
       shiftCoinType: depositType,
@@ -80,16 +67,12 @@ export default handleActions(
       shiftState: statuses.NO_DEPOSITS,
     }),
     [types.PREPARE_SHAPE_SHIFT_FAIL]: (state, { data: error }) => ({
-      ...state,
-      shifting: false,
       error: error.message,
     }),
 
-    [types.CLEAR_SHAPE_SHIFT]: state => ({
-      ...state,
+    [types.CLEAR_SHAPE_SHIFT]: () => ({
       loading: false,
       updating: false,
-      shifting: false,
       hasActiveShift: false,
       shiftDepositAddress: undefined,
       shiftReturnAddress: undefined,
@@ -98,15 +81,17 @@ export default handleActions(
       originCoin: "BTC",
     }),
 
-    [types.GET_ACTIVE_SHIFT_START]: state => ({
-      ...state,
+    [types.GET_ACTIVE_SHIFT_START]: () => ({
       error: undefined,
       updating: true,
     }),
     [types.GET_ACTIVE_SHIFT_SUCCESS]: (state, { data: status }) => ({
-      ...state,
       updating: false,
       shiftState: status,
+    }),
+    [types.GET_ACTIVE_SHIFT_FAIL]: (state, { data: error }) => ({
+      updating: false,
+      error: error.message,
     }),
   },
   defaultState

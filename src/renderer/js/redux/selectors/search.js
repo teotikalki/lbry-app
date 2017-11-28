@@ -58,7 +58,7 @@ export const selectWunderBarIcon = createSelector(
       case "history":
         return "icon-history";
       case "send":
-        return "icon-paper-plane";
+        return "icon-send";
       case "rewards":
         return "icon-rocket";
       case "invite":
