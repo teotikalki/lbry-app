@@ -14,11 +14,14 @@ const Link = props => {
     navigate,
     navigateParams,
     doNavigate,
+    actualButton,
+    className,
+    ...otherProps
   } = props;
 
-  const className =
-    (props.className || "") +
-    (!props.className && !button ? "button-text" : "") + // Non-button links get the same look as text buttons
+  const combinedClassName =
+    (className || "") +
+    (!className && !button ? "button-text" : "") + // Non-button links get the same look as text buttons
     (button ? " button-block button-" + button + " button-set-item" : "") +
     (disabled ? " disabled" : "");
 
@@ -41,16 +44,22 @@ const Link = props => {
     );
   }
 
+  // needed for type="submit" form submission to work
+  // this should probably just go off the "href" prop
+  // when we do that we need to check all of the buttons/links that aren't supposed to look like buttons
+  const WrapperEl = actualButton ? "button" : "a";
+
   return (
-    <a
-      className={className}
+    <WrapperEl
+      className={combinedClassName}
       href={href || "javascript:;"}
       title={title}
       onClick={onClick}
       {...("style" in props ? { style: style } : {})}
+      {...otherProps}
     >
       {content}
-    </a>
+    </WrapperEl>
   );
 };
 

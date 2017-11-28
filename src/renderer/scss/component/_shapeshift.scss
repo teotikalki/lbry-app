@@ -1,0 +1,66 @@
+.shapeshift__wrapper.shapeshift__initial-wrapper {
+  min-height: 321px;
+}
+
+.shapeshift__content {
+  .spinner {
+    margin-top: 75px;
+  }
+}
+
+.shapeshift__success {
+  color: var(--color-primary);
+}
+
+.shapeshift__error {
+  min-height: 25px;
+  color: var(--color-error);
+}
+
+.shapeshift__maxdeposit {
+  min-height: 25px;
+}
+
+.shapeshift__deposit-address-wrapper {
+  display: flex;
+  flex-direction: row;
+
+  * {
+    align-self: center;
+  }
+}
+
+.shapeshift__deposit-address {
+  max-width: 500px;
+  font-size: 22px;
+  word-wrap: break-word;
+}
+
+.shapeshift__qrcode {
+  // don't use a variable here. adds a white border for easier reading in dark mode
+  // needs to stay the same no matter what theme is present
+  background-color: #fff;
+  padding: 2px;
+  margin-left: 40px;
+}
+
+.shapeshift__origin-address {
+  padding: 10px 0;
+}
+
+.shapeshift__return-adr,
+.shapeshift__link {
+  color: var(--text-color);
+}
+
+.shapeshift__actions {
+  align-self: flex-end;
+}
+
+.shapeshift__received {
+  padding: 20px 0;
+}
+
+.shapeshift__link {
+  margin-top: 20px;
+}
