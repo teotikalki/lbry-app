@@ -55,7 +55,8 @@ class ShapeShift extends React.PureComponent {
     return (
       // add the "shapeshift__intital-wrapper class so we can avoid content jumping once everything loads"
       // it just gives the section a min-height equal to the height of the content when the form is rendered
-      // there is probably a better way to do this, but it looks pretty nice
+      // if the markup below changes for the initial render (form.jsx) there will be content jumping
+      // the styling in shapeshift.scss will need to be updated to the correct min-height
       <section
         className={classnames("card shapeshift__wrapper", {
           "shapeshift__initial-wrapper": loading,
@@ -78,7 +79,7 @@ class ShapeShift extends React.PureComponent {
         </div>
 
         <div className="card__content shapeshift__content">
-          {error && <div className="error-text">{error}</div>}
+          {error && <div className="form-field__error">{error}</div>}
           {loading && <Spinner dark />}
           {!loading &&
             !hasActiveShift &&

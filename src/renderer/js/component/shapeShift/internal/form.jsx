@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "component/link";
 import { getExampleAddress } from "util/shape_shift";
+import { Submit } from "component/form";
 
 export default ({
   values,
@@ -72,10 +73,7 @@ export default ({
         </p>
       </div>
       <div className="shapeshift__submit">
-        <Link
-          actualButton
-          button="primary"
-          type="submit"
+        <Submit
           label={__("Begin Conversion")}
           disabled={isSubmitting || !!Object.keys(errors).length}
         />

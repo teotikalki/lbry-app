@@ -14,9 +14,7 @@ const Link = props => {
     navigate,
     navigateParams,
     doNavigate,
-    actualButton,
     className,
-    ...otherProps
   } = props;
 
   const combinedClassName =
@@ -44,22 +42,16 @@ const Link = props => {
     );
   }
 
-  // An acutal button is needed to use type="submit" for form submission
-  // this should probably just go off an "href" prop
-  // if we do that we will need to check all of the buttons that aren't supposed to look like buttons
-  const WrapperEl = actualButton ? "button" : "a";
-
   return (
-    <WrapperEl
+    <a
       className={combinedClassName}
       href={href || "javascript:;"}
       title={title}
       onClick={onClick}
       {...("style" in props ? { style: style } : {})}
-      {...otherProps}
     >
       {content}
-    </WrapperEl>
+    </a>
   );
 };
 

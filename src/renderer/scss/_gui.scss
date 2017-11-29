@@ -34,6 +34,11 @@ body
   color: var(--color-meta-light);
 }
 
+.credit-amount--bold
+{
+  font-weight: 700;
+}
+
 #main-content
 {
   margin: auto;
@@ -189,10 +194,6 @@ section.section-spaced {
   text-align: center;
 }
 
-.error-text {
-  color: var(--color-error);
-}
-
 .display-inline-block {
   display: inline-block;
 }
@@ -203,8 +204,4 @@ section.section-spaced {
 
 .display-inline {
   display: inline;
-}
-
-.font-bold {
-  font-weight: 700;
 }

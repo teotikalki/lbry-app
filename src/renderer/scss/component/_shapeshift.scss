@@ -1,19 +1,19 @@
+// Can't think of a better way to do this
+// The initial shapeshift form is 311px tall
+// the .shapeshift__initial-wrapper class is only added when the form is being loaded
+// Once the form is rendered, there is a very smooth transition because the height doesn't change
 .shapeshift__wrapper.shapeshift__initial-wrapper {
   min-height: 311px;
 }
 
 .shapeshift__content {
   .spinner {
-    margin-top: 75px;
+    margin-top: $spacing-vertical * 3;
   }
 }
 
 .shapeshift__success {
   color: var(--color-primary);
-}
-
-.shapeshift__error {
-  color: var(--color-error);
 }
 
 .shapeshift__error,
@@ -30,12 +30,6 @@
   }
 }
 
-.shapeshift__deposit-address {
-  max-width: 500px;
-  font-size: 22px;
-  word-wrap: break-word;
-}
-
 .shapeshift__qrcode {
   // don't use a variable here. adds a white border for easier reading in dark mode
   // needs to stay the same no matter what theme is present
@@ -46,16 +40,16 @@
 
 .shapeshift__received,
 .shapeshift__complete {
-  padding: 20px 0;
+  padding: $spacing-vertical 0;
 }
 
 .shapeshift__actions {
-  padding-top: 20px;
+  padding-top: $spacing-vertical;
 }
 
 .shapeshift__submit,
 .shapeshift__actions-help {
-  padding-top: 10px;
+  padding-top: $spacing-vertical / 2;
 }
 
 .shapeshift__link {

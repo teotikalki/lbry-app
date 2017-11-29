@@ -1,8 +1,7 @@
 import React, { PureComponent } from "react";
-import { shell, clipboard } from "electron";
 import QRCode from "qrcode-react";
 import * as statuses from "constants/shape_shift";
-import { Address } from "component/common";
+import Address from "component/address";
 import Link from "component/link";
 
 export default class ActiveShapeShift extends PureComponent {
@@ -49,12 +48,12 @@ export default class ActiveShapeShift extends PureComponent {
     } = this.props;
 
     return (
-      <div className="shapeshift__active-shift">
+      <div>
         {shiftState === statuses.NO_DEPOSITS && (
           <div>
             <p>
               Send up to{" "}
-              <span className="font-bold">
+              <span className="credit-amount--bold">
                 {shiftDepositLimit}{" "}
                 <span className="shapeshift__success">{shiftCoinType}</span>
               </span>{" "}
@@ -62,18 +61,7 @@ export default class ActiveShapeShift extends PureComponent {
             </p>
 
             <div className="shapeshift__deposit-address-wrapper">
-              <Address address={shiftDepositAddress} />
-              {/* the header__item class should be a generic button class */}
-              <span className="header__item">
-                <Link
-                  button="alt button--flat"
-                  icon="clipboard"
-                  onClick={() => {
-                    clipboard.writeText(shiftDepositAddress);
-                    doShowSnackBar({ message: __("Address copied") });
-                  }}
-                />
-              </span>
+              <Address address={shiftDepositAddress} showCopyButton />
               <div className="shapeshift__qrcode">
                 <QRCode value={shiftDepositAddress} />
               </div>
@@ -116,11 +104,7 @@ export default class ActiveShapeShift extends PureComponent {
           <span className="shapeshift__link">
             <Link
               label={__("View the status on Shapeshift.io")}
-              onClick={() =>
-                shell.openExternal(
-                  `https://shapeshift.io/#/status/${shiftOrderId}`
-                )
-              }
+              href={`https://shapeshift.io/#/status/${shiftOrderId}`}
             />
           </span>
           {shiftState === statuses.NO_DEPOSITS &&
