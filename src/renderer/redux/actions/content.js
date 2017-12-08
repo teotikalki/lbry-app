@@ -15,6 +15,7 @@ import { makeSelectCostInfoForUri } from "redux/selectors/cost_info";
 import { doAlertError, doOpenModal } from "redux/actions/app";
 import { doClaimEligiblePurchaseRewards } from "redux/actions/rewards";
 import { selectBadgeNumber } from "redux/selectors/app";
+import { selectClaimShowPendingOutpoints } from "redux/selectors/claims";
 import { selectTotalDownloadProgress } from "redux/selectors/file_info";
 import setBadge from "util/setBadge";
 import setProgressBar from "util/setProgressBar";
@@ -518,8 +519,6 @@ export function doPublish(params) {
 
 export function doAbandonClaim(claimId) {
   return function(dispatch, getState) {
-    const state = getState();
-
     dispatch({
       type: types.ABANDON_CLAIM_STARTED,
       data: {
@@ -551,5 +550,50 @@ export function doAbandonClaim(claimId) {
         claim_id: claimId,
       })
       .then(successCallback, errorCallback);
+  };
+}
+
+export function doClaimShow(outpoint) {
+  return function(dispatch, getState) {
+    return new Promise((resolve, reject) => {
+      const claimShowPendingOutpoints = selectClaimShowPendingOutpoints(
+        getState()
+      );
+
+      if (claimShowPendingOutpoints.indexOf(outpoint) === -1) {
+        console.log("received outpoint:" + outpoint);
+
+        dispatch({
+          type: types.CLAIM_SHOW_STARTED,
+          data: {
+            outpoint: outpoint,
+          },
+        });
+
+        const [txid, nout] = outpoint.split(":");
+
+        const success = claim => {
+          console.log("claim show success");
+          console.log(claim);
+          dispatch({
+            type: types.CLAIM_SHOW_SUCCESS,
+            data: {
+              claim: claim,
+            },
+          });
+        };
+
+        const failure = () => {
+          dispatch({
+            type: types.CLAIM_SHOW_FAILURE,
+            data: {
+              outpoint: outpoint,
+            },
+          });
+        };
+
+        lbry.claim_show({ txid, nout: parseInt(nout) }).then(success, failure);
+      }
+    });
   };
 }
