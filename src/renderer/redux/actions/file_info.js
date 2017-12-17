@@ -97,11 +97,6 @@ export function doDeleteFile(sd_hash, deleteFromComputer, abandonClaim) {
   return function(dispatch, getState) {
     const state = getState();
 
-    console.log("zzz");
-    console.log(state);
-    console.log(selectMyPublishClaims(state));
-    console.log("file delete: " + sd_hash);
-
     // lbry.file_delete({
     //   sd_hash: sd_hash,
     //   delete_from_download_dir: deleteFromComputer,

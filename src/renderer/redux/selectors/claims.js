@@ -49,23 +49,6 @@ export const selectClaimsByOutpoint = createSelector(
   }
 );
 
-export const makeSelectClaimsByOutpoints = outpoints => {
-  return createSelector(selectClaimsByOutpoint, allClaims => {
-    console.log("make selct claims by outpoint");
-    console.log(outpoints);
-    console.log(allClaims);
-    let ret = outpoints.reduce((claims, outpoint) => {
-      if (allClaims[outpoint]) {
-        claims[outpoint] = allClaims[outpoint];
-      }
-      return claims;
-    }, {});
-    console.log("ret");
-    console.log(ret);
-    return ret;
-  });
-};
-
 export const selectAllClaimsByChannel = createSelector(
   _selectState,
   state => state.claimsByChannel || {}

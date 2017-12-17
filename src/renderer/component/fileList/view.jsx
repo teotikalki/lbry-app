@@ -13,17 +13,13 @@ class FileList extends React.PureComponent {
     };
 
     this._sortFunctions = {
-      date: function(claims) {
-        return claims.slice().reverse();
+      date: function(files) {
+        return files.slice().reverse();
       },
-      title: function(claims) {
-        return claims.slice().sort(function(claim1, claim2) {
-          const title1 = claim1.value
-            ? claim1.value.stream.metadata.title.toLowerCase()
-            : claim1.name;
-          const title2 = claim2.value
-            ? claim2.value.stream.metadata.title.toLowerCase()
-            : claim2.name;
+      title: function(files) {
+        return files.slice().sort(function(fileInfo1, fileInfo2) {
+          const title1 = this.getFileInfoTitle(fileInfo1);
+          const title2 = this.getFileInfoTitle(fileInfo2);
           if (title1 < title2) {
             return -1;
           } else if (title1 > title2) {
@@ -33,8 +29,8 @@ class FileList extends React.PureComponent {
           }
         });
       },
-      filename: function(claims) {
-        return claims
+      filename: function(files) {
+        return files
           .slice()
           .sort(function({ file_name: fileName1 }, { file_name: fileName2 }) {
             const fileName1Lower = fileName1.toLowerCase();
@@ -51,33 +47,10 @@ class FileList extends React.PureComponent {
     };
   }
 
-  componentWillMount(props) {
-    this.fetchClaims(this.props);
-  }
-
-  componentWillReceiveProps(props) {
-    this.fetchClaims(props);
-  }
-
-  fetchClaims(props) {
-    const { claims, fileInfos, doClaimShow } = props;
-
-    fileInfos.forEach(fileInfo => {
-      if (claims[fileInfo.outpoint] === undefined) {
-        doClaimShow(fileInfo.outpoint);
-      } else {
-        console.log("have claim for");
-        console.log(fileInfo);
-      }
-    });
-  }
-
-  getChannelSignature(claim) {
-    if (claim.value) {
-      return claim.value.publisherSignature.certificateId;
-    } else {
-      return claim.metadata.publisherSignature.certificateId;
-    }
+  getFileInfoTitle(fileInfo) {
+    return fileInfo.metadata && Object.keys(fileInfo.metadata).length
+      ? fileInfo.title.toLowerCase()
+      : fileInfo.name;
   }
 
   handleSortChanged(event) {
@@ -87,27 +60,27 @@ class FileList extends React.PureComponent {
   }
 
   render() {
-    const { fetching, claims } = this.props;
+    const { fetching, fileInfos } = this.props;
     const { sortBy } = this.state;
     const content = [];
     console.log("in file list");
-    console.log(claims);
-    this._sortFunctions[sortBy](Object.values(claims)).forEach(claim => {
+    console.log(fileInfos);
+    this._sortFunctions[sortBy](Object.values(fileInfos)).forEach(fileInfo => {
       let uriParams = {};
 
-      if (claim.channel_name) {
-        uriParams.channelName = claim.channel_name;
-        uriParams.contentName = claim.name;
-        uriParams.claimId = this.getChannelSignature(claim);
+      if (fileInfo.channel_name) {
+        uriParams.channelName = fileInfo.channel_name;
+        uriParams.contentName = fileInfo.name;
+        uriParams.claimId = fileInfo.channel_claim_id;
       } else {
-        uriParams.claimId = claim.claim_id;
-        uriParams.name = claim.name;
+        uriParams.claimId = fileInfo.claim_id;
+        uriParams.name = fileInfo.name;
       }
       const uri = lbryuri.build(uriParams);
 
       content.push(
         <FileTile
-          key={claim.outpoint || claim.claim_id}
+          key={fileInfo.outpoint || fileInfo.claim_id}
           uri={uri}
           showPrice={false}
           showLocal={false}

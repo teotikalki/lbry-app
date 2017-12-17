@@ -25,6 +25,22 @@ const defaultState: StateFileInfo = {
   urisLoading: {},
 };
 
+function fixFileInfo(fileInfo: any) {
+  if (
+    fileInfo &&
+    fileInfo.metadata &&
+    fileInfo.metadata.stream &&
+    fileInfo.metadata.stream.metadata
+  ) {
+    fileInfo.channel_claim_id = fileInfo.metadata.publisherSignature
+      ? fileInfo.metadata.publisherSignature.certificateId
+      : null;
+    fileInfo.stream = fileInfo.metadata.stream;
+    fileInfo.metadata = fileInfo.metadata.stream.metadata;
+  }
+  return fileInfo;
+}
+
 export default handleActions(
   {
     [types.FILE_LIST_START]: (state: StateFileInfo, action: Action) => ({
@@ -38,7 +54,7 @@ export default handleActions(
       fileInfos.forEach(fileInfo => {
         const { sd_hash } = fileInfo;
 
-        if (sd_hash) newBySdHash[fileInfo.sd_hash] = fileInfo;
+        if (sd_hash) newBySdHash[fileInfo.sd_hash] = fixFileInfo(fileInfo);
       });
 
       return {
@@ -68,7 +84,7 @@ export default handleActions(
       const newBySdHash = Object.assign({}, state.bySdHash);
       const newFetching = Object.assign({}, state.fetching);
 
-      newBySdHash[sd_hash] = fileInfo;
+      newBySdHash[sd_hash] = fixFileInfo(fileInfo);
       delete newFetching[sd_hash];
 
       return {
@@ -85,7 +101,7 @@ export default handleActions(
       const newLoading = Object.assign({}, state.urisLoading);
 
       newDownloading[sd_hash] = true;
-      newBySdHash[sd_hash] = fileInfo;
+      newBySdHash[sd_hash] = fixFileInfo(fileInfo);
       delete newLoading[uri];
 
       return {
@@ -101,7 +117,7 @@ export default handleActions(
       const newBySdHash = Object.assign({}, state.bySdHash);
       const newDownloading = Object.assign({}, state.downloadingBySdHash);
 
-      newBySdHash[sd_hash] = fileInfo;
+      newBySdHash[sd_hash] = fixFileInfo(fileInfo);
       newDownloading[sd_hash] = true;
 
       return {
@@ -116,7 +132,7 @@ export default handleActions(
       const newBySdHash = Object.assign({}, state.bySdHash);
       const newDownloading = Object.assign({}, state.downloadingBySdHash);
 
-      newBySdHash[sd_hash] = fileInfo;
+      newBySdHash[sd_hash] = fixFileInfo(fileInfo);
       delete newDownloading[sd_hash];
 
       return {
