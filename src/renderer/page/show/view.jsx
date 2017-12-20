@@ -53,7 +53,7 @@ class ShowPage extends React.PureComponent {
       innerContent = <FilePage uri={uri} />;
     }
 
-    return <main className="main--single-column">{innerContent}</main>;
+    return innerContent;
   }
 }
 

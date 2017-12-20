@@ -119,10 +119,10 @@ var init = function() {
 
           ReactDOM.render(
             <Provider store={store}>
-              <div>
+              <React.Fragment>
                 <App />
                 <SnackBar />
-              </div>
+              </React.Fragment>
             </Provider>,
             document.getElementById("app")
           );
