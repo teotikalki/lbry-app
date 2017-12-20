@@ -2,7 +2,6 @@ import React from "react";
 import Link from "component/link";
 import { CreditAmount } from "component/common";
 import { Form, FormRow, Submit } from "component/form.js";
-import Recaptcha from "react-recaptcha";
 
 const sitekey =
   process.env.NODE_ENV === "development"
@@ -13,10 +12,22 @@ class UserEmailVerify extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    this.eleId = "recaptcha-" + Date.now();
+
     this.state = {
       code: "",
       recaptcha: "",
     };
+  }
+
+  componentDidMount() {
+    grecaptcha.render(this.eleId, {
+      sitekey: sitekey,
+      callback: this.verifyCallback.bind(this),
+      theme: "light",
+      type: "image",
+      badge: "bottomright",
+    });
   }
 
   handleCodeChanged(event) {
@@ -44,6 +55,7 @@ class UserEmailVerify extends React.PureComponent {
       isPending,
       rewardAmount,
     } = this.props;
+
     return (
       <Form onSubmit={this.handleSubmit.bind(this)}>
         <p>Please enter the verification code emailed to {email}.</p>
@@ -59,10 +71,7 @@ class UserEmailVerify extends React.PureComponent {
         />
         <div className="form-row form-row--field-only">
           <div className="form-field">
-            <Recaptcha
-              sitekey={sitekey}
-              verifyCallback={this.verifyCallback.bind(this)}
-            />
+            <div id={this.eleId} className="g-recaptcha" />
           </div>
           <div className="form-field__helper">
             <p>
