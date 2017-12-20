@@ -57,18 +57,21 @@ class UserEmailVerify extends React.PureComponent {
           }}
           errorMessage={errorMessage}
         />
-        <Recaptcha
-          sitekey={sitekey}
-          verifyCallback={this.verifyCallback.bind(this)}
-        />
-        {/* render help separately so it always shows */}
-        <div className="form-field__helper">
-          <p>
-            {__("Email")}{" "}
-            <Link href="mailto:help@lbry.io" label="help@lbry.io" /> or join our{" "}
-            <Link href="https://chat.lbry.io" label="chat" />{" "}
-            {__("if you encounter any trouble with your code.")}
-          </p>
+        <div className="form-row form-row--field-only">
+          <div className="form-field">
+            <Recaptcha
+              sitekey={sitekey}
+              verifyCallback={this.verifyCallback.bind(this)}
+            />
+          </div>
+          <div className="form-field__helper">
+            <p>
+              {__("Email")}{" "}
+              <Link href="mailto:help@lbry.io" label="help@lbry.io" /> or join
+              our <Link href="https://chat.lbry.io" label="chat" />{" "}
+              {__("if you encounter any trouble with your code.")}
+            </p>
+          </div>
         </div>
         <div className="form-row-submit">
           <Submit
