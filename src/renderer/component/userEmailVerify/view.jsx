@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import { CreditAmount } from "component/common";
 import { Form, FormRow, Submit } from "component/form.js";
 
@@ -48,8 +48,8 @@ class UserEmailVerify extends React.PureComponent {
         <div className="form-field__helper">
           <p>
             {__("Email")}{" "}
-            <Link href="mailto:help@lbry.io" label="help@lbry.io" /> or join our{" "}
-            <Link href="https://chat.lbry.io" label="chat" />{" "}
+            <Button href="mailto:help@lbry.io" label="help@lbry.io" /> or join
+            our <Button href="https://chat.lbry.io" label="chat" />{" "}
             {__("if you encounter any trouble with your code.")}
           </p>
         </div>

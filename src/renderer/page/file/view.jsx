@@ -10,7 +10,7 @@ import Icon from "component/icon";
 import WalletSendTip from "component/walletSendTip";
 import DateTime from "component/dateTime";
 import * as icons from "constants/icons";
-import Link from "component/link";
+import Button from "component/button";
 import SubscribeButton from "component/subscribeButton";
 import Page from "component/common/page";
 

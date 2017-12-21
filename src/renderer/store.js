@@ -77,10 +77,10 @@ const bulkThunk = createBulkThunkMiddleware();
 const middleware = [thunk, bulkThunk];
 
 if (env === "development") {
-  const logger = createLogger({
-    collapsed: true,
-  });
-  middleware.push(logger);
+  // const logger = createLogger({
+  //   collapsed: true,
+  // });
+  // middleware.push(logger);
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

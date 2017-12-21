@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import classnames from "classnames";
 import * as statuses from "constants/shape_shift";
 import { validateShapeShiftForm } from "util/shape_shift";
-import Link from "component/link";
+import Button from "component/button";
 import Spinner from "component/common/spinner";
 import { BusyMessage } from "component/common";
 import ShapeShiftForm from "./internal/form";
@@ -88,7 +88,7 @@ class ShapeShift extends React.PureComponent<Props> {
           <h3>{__("Convert Crypto to LBC")}</h3>
           <p className="help">
             {__("Powered by ShapeShift. Read our FAQ")}{" "}
-            <Link href="https://lbry.io/faq/shapeshift">{__("here")}</Link>.
+            <Button href="https://lbry.io/faq/shapeshift">{__("here")}</Button>.
             {hasActiveShift &&
               shiftState !== "complete" && (
                 <span>{__("This will update automatically.")}</span>

@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import { FormRow } from "component/form";
 import UriIndicator from "component/uriIndicator";
 
@@ -49,7 +49,7 @@ class WalletSendTip extends React.PureComponent {
                   title,
                   uri
                 ) + " "}
-                <Link
+                <Button
                   label={__("Learn more")}
                   href="https://lbry.io/faq/tipping"
                 />
@@ -59,13 +59,13 @@ class WalletSendTip extends React.PureComponent {
             onChange={event => this.handleSupportPriceChange(event)}
           />
           <div className="form-row-submit">
-            <Link
+            <Button
               label={__("Send")}
               button="primary"
               disabled={isPending}
               onClick={this.handleSendButtonClicked.bind(this)}
             />
-            <Link
+            <Button
               label={__("Cancel")}
               button="alt"
               navigate="/show"

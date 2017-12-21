@@ -4,7 +4,7 @@ import { FormRow } from "component/form.js";
 import SubHeader from "component/subHeader";
 import * as settings from "constants/settings";
 import lbry from "lbry.js";
-import Link from "component/link";
+import Button from "component/button";
 import FormFieldPrice from "component/formFieldPrice";
 
 class SettingsPage extends React.PureComponent {
@@ -336,7 +336,7 @@ class SettingsPage extends React.PureComponent {
           </div>
           <div className="card__content">
             <p>
-              <Link
+              <Button
                 label={
                   this.state.clearingCache
                     ? __("Clearing")

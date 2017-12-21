@@ -1,7 +1,7 @@
 import React from "react";
 import lbryuri from "lbryuri.js";
 import CardMedia from "component/cardMedia";
-import Link from "component/link";
+import Button from "component/button";
 import { TruncatedText } from "component/common";
 import Icon from "component/icon";
 import FilePrice from "component/filePrice";
@@ -10,7 +10,7 @@ import NsfwOverlay from "component/nsfwOverlay";
 import TruncatedMarkdown from "component/truncatedMarkdown";
 import * as icons from "constants/icons";
 
-class FileCard extends React.PureComponent {
+class FileCard extends React.Component {
   constructor(props) {
     super(props);
 
@@ -84,7 +84,7 @@ class FileCard extends React.PureComponent {
         onMouseLeave={this.handleMouseOut.bind(this)}
       >
         <div className="card__inner">
-          <Link
+          <div
             onClick={() => navigate("/show", { uri })}
             className="card__link"
           >
@@ -100,11 +100,11 @@ class FileCard extends React.PureComponent {
                   {fileInfo && <Icon icon={icons.LOCAL} />}
                 </span>
                 <span className="card--file-subtitle">
-                  <UriIndicator uri={uri} link={true} span={true} smallCard />
+                  <UriIndicator uri={uri} smallCard />
                 </span>
               </div>
             </div>
-          </Link>
+          </div>
           {/* Test for nizuka's design: should we remove description?
             <div className="card__content card__subtext card__subtext--two-lines">
               <TruncatedMarkdown lines={2}>{description}</TruncatedMarkdown>

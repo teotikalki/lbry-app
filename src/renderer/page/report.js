@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import { FormRow } from "component/form";
 import { doShowSnackBar } from "redux/actions/app";
 import lbry from "../lbry.js";
@@ -87,7 +87,7 @@ class ReportPage extends React.Component {
           <div className="card__content">
             <h3>{__("Developer?")}</h3>
             {__("You can also")}{" "}
-            <Link
+            <Button
               href="https://github.com/lbryio/lbry/issues"
               label={__("submit an issue on GitHub")}
             />.

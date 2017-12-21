@@ -1,7 +1,7 @@
 //@TODO: Customize advice based on OS
 import React from "react";
 import lbry from "lbry.js";
-import Link from "component/link";
+import Button from "component/button";
 import SubHeader from "component/subHeader";
 import { BusyMessage, Icon } from "component/common";
 
@@ -81,7 +81,7 @@ class HelpPage extends React.PureComponent {
           <div className="card__content">
             <p>{__("Our FAQ answers many common questions.")}</p>
             <p>
-              <Link
+              <Button
                 href="https://lbry.io/faq"
                 label={__("Read the FAQ")}
                 icon="icon-question"
@@ -100,7 +100,7 @@ class HelpPage extends React.PureComponent {
               <strong>#help</strong> {__("channel of our Discord chat room.")}
             </p>
             <p>
-              <Link
+              <Button
                 button="alt"
                 label={__("Join Our Chat")}
                 icon="icon-comments"
@@ -116,7 +116,7 @@ class HelpPage extends React.PureComponent {
           <div className="card__content">
             <p>{__("Did you find something wrong?")}</p>
             <p>
-              <Link
+              <Button
                 navigate="/report"
                 label={__("Submit a Bug Report")}
                 icon="icon-bug"
@@ -139,7 +139,7 @@ class HelpPage extends React.PureComponent {
             ) : this.state.upgradeAvailable ? (
               <p>
                 {__("A newer version of LBRY is available.")}{" "}
-                <Link href={newVerLink} label={__("Download now!")} />
+                <Button href={newVerLink} label={__("Download now!")} />
               </p>
             ) : (
               <p>{__("Your copy of LBRY is up to date.")}</p>
@@ -167,7 +167,7 @@ class HelpPage extends React.PureComponent {
                       ) : (
                         <span>
                           <span className="empty">{__("none")} </span>
-                          (<Link
+                          (<Button
                             onClick={() => doAuth()}
                             label={__("set email")}
                           />)
@@ -197,7 +197,7 @@ class HelpPage extends React.PureComponent {
                     <th>{__("Access Token")}</th>
                     <td>
                       {this.state.accessTokenHidden && (
-                        <Link
+                        <Button
                           label={__("show")}
                           onClick={this.showAccessToken.bind(this)}
                         />

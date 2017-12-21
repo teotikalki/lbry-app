@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "modal/modal";
-import Link from "component/link/index";
+import Button from "component/button/index";
 
 const ModalWelcome = props => {
   const { closeModal } = props;
@@ -22,7 +22,7 @@ const ModalWelcome = props => {
           )}
         </p>
         <div className="modal__buttons">
-          <Link
+          <Button
             button="primary"
             onClick={closeModal}
             label={__("Blockchain Centaurs? I'm In")}

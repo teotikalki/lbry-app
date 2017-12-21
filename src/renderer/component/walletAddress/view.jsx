@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import Address from "component/address";
 
 class WalletAddress extends React.PureComponent {
@@ -24,7 +24,7 @@ class WalletAddress extends React.PureComponent {
           <Address address={receiveAddress} showCopyButton />
         </div>
         <div className="card__actions">
-          <Link
+          <Button
             label={__("Get New Address")}
             button="primary"
             icon="icon-refresh"

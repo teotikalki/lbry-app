@@ -1,7 +1,7 @@
 import React from "react";
 import TransactionListItem from "./internal/TransactionListItem";
 import FormField from "component/formField";
-import Link from "component/link";
+import Button from "component/button";
 import * as icons from "constants/icons";
 import * as modals from "constants/modal_types";
 
@@ -61,7 +61,7 @@ class TransactionList extends React.PureComponent {
               <option value="support">{__("Supports")}</option>
               <option value="update">{__("Updates")}</option>
             </FormField>{" "}
-            <Link
+            <Button
               href="https://lbry.io/faq/transaction-types"
               icon={icons.HELP_CIRCLE}
             />

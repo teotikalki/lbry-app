@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { clipboard } from "electron";
-import Link from "component/link";
+import Button from "component/button";
 import classnames from "classnames";
 
 export default class Address extends React.PureComponent {
@@ -36,7 +36,7 @@ export default class Address extends React.PureComponent {
         />
         {showCopyButton && (
           <span className="header__item">
-            <Link
+            <Button
               button="alt button--flat"
               icon="clipboard"
               onClick={() => {

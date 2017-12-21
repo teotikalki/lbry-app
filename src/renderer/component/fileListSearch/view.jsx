@@ -1,7 +1,7 @@
 import React from "react";
 import FileTile from "component/fileTile";
 import ChannelTile from "component/channelTile";
-import Link from "component/link";
+import Button from "component/button";
 import { BusyMessage } from "component/common.js";
 import lbryuri from "lbryuri";
 
@@ -12,7 +12,7 @@ const SearchNoResults = props => {
     <section>
       <span className="empty">
         {(__("No one has checked anything in for %s yet."), query)}{" "}
-        <Link label={__("Be the first")} navigate="/publish" />
+        <Button label={__("Be the first")} navigate="/publish" />
       </span>
     </section>
   );

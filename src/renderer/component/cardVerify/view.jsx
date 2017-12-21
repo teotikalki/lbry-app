@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Link from "component/link";
+import Button from "component/button";
 
 let scriptLoading = false;
 let scriptLoaded = false;
@@ -164,7 +164,7 @@ class CardVerify extends React.Component {
 
   render() {
     return (
-      <Link
+      <Button
         button="alt"
         label={this.props.label}
         icon="icon-lock"

@@ -3,7 +3,7 @@ import lbryuri from "lbryuri";
 import { BusyMessage } from "component/common";
 import FileTile from "component/fileTile";
 import ReactPaginate from "react-paginate";
-import Link from "component/link";
+import Button from "component/button";
 import SubscribeButton from "component/subscribeButton";
 import Page from "component/common/page";
 

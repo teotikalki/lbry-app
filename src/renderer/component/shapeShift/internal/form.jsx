@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import { getExampleAddress } from "util/shape_shift";
 import { Submit, FormRow } from "component/form";
 import type { ShapeShiftFormValues, Dispatch } from "redux/actions/shape_shift";

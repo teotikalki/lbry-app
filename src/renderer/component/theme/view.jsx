@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "component/button";
 
 const Theme = props => {
   const { themePath } = props;
@@ -8,7 +9,7 @@ const Theme = props => {
   }
 
   return (
-    <link
+    <Button
       href={themePath}
       rel="stylesheet"
       type="text/css"

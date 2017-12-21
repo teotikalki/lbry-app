@@ -30,7 +30,7 @@ const RewardListClaimed = props => {
                   <td>{reward.reward_title}</td>
                   <td>{reward.reward_amount}</td>
                   <td>
-                    <LinkTransaction id={reward.transaction_id} />
+                    <ButtonTransaction id={reward.transaction_id} />
                   </td>
                   <td>
                     {reward.created_at.replace("Z", " ").replace("T", " ")}

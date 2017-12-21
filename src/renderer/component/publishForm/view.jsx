@@ -3,7 +3,7 @@ import lbry from "lbry";
 import lbryuri from "lbryuri";
 import FormField from "component/formField";
 import { Form, FormRow, Submit } from "component/form.js";
-import Link from "component/link";
+import Button from "component/button";
 import FormFieldPrice from "component/formFieldPrice";
 import Modal from "modal/modal";
 import { BusyMessage } from "component/common";
@@ -487,7 +487,7 @@ class PublishForm extends React.PureComponent {
       return (
         <span>
           {__("You already have a claim with this name.")}{" "}
-          <Link
+          <Button
             label={__("Edit existing claim")}
             onClick={() => this.handleEditClaim()}
           />
@@ -806,7 +806,7 @@ class PublishForm extends React.PureComponent {
                 {__(
                   "This is the exact address where people find your content (ex. lbry://myvideo)."
                 )}{" "}
-                <Link
+                <Button
                   label={__("Learn more")}
                   href="https://lbry.io/faq/naming"
                 />.
@@ -861,7 +861,7 @@ class PublishForm extends React.PureComponent {
                 label={
                   <span>
                     {__("I agree to the")}{" "}
-                    <Link
+                    <Button
                       href="https://www.lbry.io/termsofservice"
                       label={__("LBRY terms of service")}
                     />
@@ -891,7 +891,7 @@ class PublishForm extends React.PureComponent {
                   this.state.bid <= this.topClaimValue())
               }
             />
-            <Link
+            <Button
               button="cancel"
               onClick={this.props.back}
               label={__("Cancel")}

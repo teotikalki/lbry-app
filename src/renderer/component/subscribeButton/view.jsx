@@ -1,14 +1,13 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 
 export default ({
   channelName,
   uri,
   subscriptions,
   doChannelSubscribe,
-  doChannelUnsubscribe
- }) => {
-
+  doChannelUnsubscribe,
+}) => {
   const isSubscribed =
     subscriptions
       .map(subscription => subscription.channelName)
@@ -22,15 +21,17 @@ export default ({
 
   return channelName && uri ? (
     <div className="card__actions">
-      <Link
+      <Button
         iconRight={isSubscribed ? "" : "at"}
         button={isSubscribed ? "alt" : "primary"}
         label={subscriptionLabel}
-        onClick={() => subscriptionHandler({
-          channelName,
-          uri,
-        })}
+        onClick={() =>
+          subscriptionHandler({
+            channelName,
+            uri,
+          })
+        }
       />
     </div>
   ) : null;
-}
+};

@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "component/common";
-import Link from "component/link";
+import Button from "component/button";
 import lbryuri from "lbryuri";
 import classnames from "classnames";
 
@@ -87,14 +87,14 @@ class UriIndicator extends React.PureComponent {
     }
 
     return (
-      <Link
+      <Button
         navigate="/show"
         navigateParams={{ uri: channelLink }}
         className="no-underline"
         span={span}
       >
         {inner}
-      </Link>
+      </Button>
     );
   }
 }

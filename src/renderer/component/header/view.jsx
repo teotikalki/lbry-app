@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import WunderBar from "component/wunderbar";
 
 export const Header = props => {
@@ -16,7 +16,7 @@ export const Header = props => {
   return (
     <header id="header">
       <div className="header__actions-left">
-        <Link
+        <Button
           alt
           circle
           onClick={back}
@@ -25,7 +25,7 @@ export const Header = props => {
           title={__("Back")}
         />
 
-        <Link
+        <Button
           alt
           circle
           onClick={forward}
@@ -34,7 +34,7 @@ export const Header = props => {
           title={__("Forward")}
         />
 
-        <Link
+        <Button
           alt
           onClick={() => navigate("/discover")}
           icon="home"
@@ -45,7 +45,7 @@ export const Header = props => {
       <WunderBar />
 
       <div className="header__actions-right">
-        <Link
+        <Button
           inverse
           onClick={() => navigate("/wallet")}
           icon="user"
@@ -53,20 +53,20 @@ export const Header = props => {
           title={__("Wallet")}
         />
 
-        <Link
+        <Button
           onClick={() => navigate("/publish")}
           icon="cloud-upload"
           label={__("Publish")}
         />
 
-        <Link
+        <Button
           alt
           onClick={() => navigate("/settings")}
           icon="gear"
           title={__("Help")}
         />
 
-        <Link
+        <Button
           alt
           onClick={() => navigate("/help")}
           icon="question"

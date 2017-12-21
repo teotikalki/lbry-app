@@ -1,12 +1,12 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import { CreditAmount } from "component/common";
 
 const WalletBalance = props => {
   const { balance, navigate } = props;
   /*
 <div className="help">
-          <Link
+          <Button
             onClick={() => navigate("/backup")}
             label={__("Backup Your Wallet")}
           />
@@ -23,8 +23,8 @@ const WalletBalance = props => {
         )}
       </div>
       <div className="card__actions">
-        <Link button="alt" navigate="/getcredits" label={__("Get Credits")} />
-        <Link
+        <Button button="alt" navigate="/getcredits" label={__("Get Credits")} />
+        <Button
           button="alt"
           disabled={balance === 0}
           navigate="/backup"

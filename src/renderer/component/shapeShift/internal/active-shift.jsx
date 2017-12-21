@@ -3,7 +3,7 @@ import * as React from "react";
 import QRCode from "qrcode.react";
 import * as statuses from "constants/shape_shift";
 import Address from "component/address";
-import Link from "component/link";
+import Button from "component/button";
 import type { Dispatch } from "redux/actions/shape_shift";
 import ShiftMarketInfo from "./market_info";
 
@@ -124,7 +124,7 @@ class ActiveShapeShift extends React.PureComponent<Props> {
           </div>
         )}
         <div className="card__actions card__actions--only-vertical">
-          <Link
+          <Button
             button={shiftState === statuses.COMPLETE ? "primary" : "alt"}
             onClick={clearShapeShift}
             label={
@@ -136,7 +136,7 @@ class ActiveShapeShift extends React.PureComponent<Props> {
           />
           {shiftOrderId && (
             <span className="shapeshift__link">
-              <Link
+              <Button
                 button="text"
                 label={__("View the status on Shapeshift.io")}
                 href={`https://shapeshift.io/#/status/${shiftOrderId}`}

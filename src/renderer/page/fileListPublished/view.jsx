@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import FileTile from "component/fileTile";
 import { BusyMessage, Thumbnail } from "component/common.js";
 import FileList from "component/fileList";
@@ -34,7 +34,7 @@ class FileListPublished extends React.PureComponent {
         content = (
           <span>
             {__("It looks like you haven't published anything to LBRY yet. Go")}{" "}
-            <Link
+            <Button
               onClick={() => navigate("/publish")}
               label={__("share your beautiful cats with the world")}
             />!

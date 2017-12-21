@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon, BusyMessage } from "component/common";
-import Link from "component/link";
+import Button from "component/button";
 
 class FileDownloadLink extends React.PureComponent {
   componentWillMount() {
@@ -81,7 +81,7 @@ class FileDownloadLink extends React.PureComponent {
         return <BusyMessage message={__("Fetching cost info")} />;
       } else {
         return (
-          <Link
+          <Button
             button="text"
             label={__("Download")}
             icon="icon-download"
@@ -94,7 +94,7 @@ class FileDownloadLink extends React.PureComponent {
       }
     } else if (fileInfo && fileInfo.download_path) {
       return (
-        <Link
+        <Button
           label={__("Open")}
           button="text"
           icon="icon-external-link-square"

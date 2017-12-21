@@ -2,7 +2,7 @@ import React from "react";
 import lbryuri from "lbryuri";
 import { FormRow } from "component/form.js";
 import { BusyMessage } from "component/common";
-import Link from "component/link";
+import Button from "component/button";
 
 class ChannelSection extends React.PureComponent {
   constructor(props) {
@@ -160,7 +160,7 @@ class ChannelSection extends React.PureComponent {
               value={this.state.newChannelBid}
             />
             <div className="form-row-submit">
-              <Link
+              <Button
                 button="primary"
                 label={
                   !this.state.creatingChannel

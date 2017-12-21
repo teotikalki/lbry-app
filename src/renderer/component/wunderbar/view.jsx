@@ -1,7 +1,7 @@
 import React from "react";
 import lbryuri from "lbryuri.js";
 import classnames from "classnames";
-import Link from "component/link";
+import Button from "component/button";
 import Autocomplete from "./internal/autocomplete";
 
 class WunderBar extends React.PureComponent {

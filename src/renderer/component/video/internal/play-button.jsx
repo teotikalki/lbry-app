@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 
 class VideoPlayButton extends React.PureComponent {
   componentDidMount() {
@@ -43,7 +43,7 @@ class VideoPlayButton extends React.PureComponent {
         : "icon-folder-o";
 
     return (
-      <Link
+      <Button
         button={button ? button : null}
         disabled={disabled}
         label={label ? label : ""}

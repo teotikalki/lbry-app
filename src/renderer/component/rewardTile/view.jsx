@@ -1,7 +1,7 @@
 import React from "react";
 import { CreditAmount, Icon } from "component/common";
 import RewardLink from "component/rewardLink";
-import Link from "component/link";
+import Button from "component/button";
 import rewards from "rewards";
 
 const RewardTile = props => {
@@ -19,7 +19,11 @@ const RewardTile = props => {
         <div className="card__content">{reward.reward_description}</div>
         <div className="card__actions  ">
           {reward.reward_type == rewards.TYPE_REFERRAL && (
-            <Link button="alt" navigate="/invite" label={__("Go To Invites")} />
+            <Button
+              button="alt"
+              navigate="/invite"
+              label={__("Go To Invites")}
+            />
           )}
           {reward.reward_type !== rewards.TYPE_REFERRAL &&
             (claimed ? (

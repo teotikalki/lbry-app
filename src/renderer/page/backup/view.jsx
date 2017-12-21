@@ -1,6 +1,6 @@
 import React from "react";
 import SubHeader from "component/subHeader";
-import Link from "component/link";
+import Button from "component/button";
 
 class BackupPage extends React.PureComponent {
   render() {
@@ -50,7 +50,7 @@ class BackupPage extends React.PureComponent {
             </p>
             <p>
               For more details on backing up and best practices,{" "}
-              <Link
+              <Button
                 href="https://lbry.io/faq/how-to-backup-wallet"
                 label={__("see this article")}
               />.

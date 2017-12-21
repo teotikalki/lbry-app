@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "modal/modal";
-import Link from "component/link/index";
+import Button from "component/button/index";
 
 class ModalIncompatibleDaemon extends React.PureComponent {
   render() {
@@ -17,7 +17,7 @@ class ModalIncompatibleDaemon extends React.PureComponent {
         {__(
           "This browser is running with an incompatible version of the LBRY protocol and your install must be repaired. "
         )}
-        <Link
+        <Button
           label={__("Learn more")}
           href="https://lbry.io/faq/incompatible-protocol-version"
         />

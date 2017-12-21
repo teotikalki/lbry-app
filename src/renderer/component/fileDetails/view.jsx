@@ -2,7 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import lbry from "lbry.js";
 import FileActions from "component/fileActions";
-import Link from "component/link";
+import Button from "component/button";
 import DateTime from "component/dateTime";
 
 const path = require("path");
@@ -64,9 +64,9 @@ class FileDetails extends React.PureComponent {
                 <tr>
                   <td>{__("Downloaded to")}</td>
                   <td>
-                    <Link onClick={() => openFolder(downloadPath)}>
+                    <Button onClick={() => openFolder(downloadPath)}>
                       {downloadPath}
-                    </Link>
+                    </Button>
                   </td>
                 </tr>
               )}

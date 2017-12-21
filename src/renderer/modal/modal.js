@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactModal from "react-modal";
-import Link from "component/link/index";
+import Button from "component/button/index";
 import app from "app.js";
 
 export class Modal extends React.PureComponent {
@@ -40,7 +40,7 @@ export class Modal extends React.PureComponent {
         <div>{this.props.children}</div>
         {this.props.type == "custom" ? null : ( // custom modals define their own buttons
           <div className="modal__buttons">
-            <Link
+            <Button
               button="primary"
               label={this.props.confirmButtonLabel}
               className="modal__button"
@@ -48,7 +48,7 @@ export class Modal extends React.PureComponent {
               onClick={this.props.onConfirmed}
             />
             {this.props.type == "confirm" ? (
-              <Link
+              <Button
                 button="alt"
                 label={this.props.abortButtonLabel}
                 className="modal__button"
@@ -95,13 +95,13 @@ export class ExpandableModal extends React.PureComponent {
         {this.props.children}
         {this.state.expanded ? this.props.extraContent : null}
         <div className="modal__buttons">
-          <Link
+          <Button
             button="primary"
             label={this.props.confirmButtonLabel}
             className="modal__button"
             onClick={this.props.onConfirmed}
           />
-          <Link
+          <Button
             button="alt"
             label={
               !this.state.expanded

@@ -1,6 +1,6 @@
 import React from "react";
 import SubHeader from "component/subHeader";
-import Link from "component/link";
+import Button from "component/button";
 import RewardSummary from "component/rewardSummary";
 import ShapeShift from "component/shapeShift";
 
@@ -15,7 +15,7 @@ const GetCreditsPage = props => {
           <h3>{__("From External Wallet")}</h3>
         </div>
         <div className="card__actions">
-          <Link
+          <Button
             button="alt"
             navigate="/send"
             icon="icon-send"
@@ -35,7 +35,7 @@ const GetCreditsPage = props => {
           </p>
         </div>
         <div className="card__actions">
-          <Link
+          <Button
             button="alt"
             href="https://lbry.io/faq/earn-credits"
             label={__("Read More")}

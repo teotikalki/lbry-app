@@ -2,7 +2,7 @@ import React from "react";
 import LinkTransaction from "component/linkTransaction";
 import { CreditAmount } from "component/common";
 import DateTime from "component/dateTime";
-import Link from "component/link";
+import Button from "component/button";
 import lbryuri from "lbryuri";
 import * as txnTypes from "constants/transaction_types";
 
@@ -16,7 +16,7 @@ class TransactionListItem extends React.PureComponent {
   getLink(type) {
     if (type == txnTypes.TIP) {
       return (
-        <Link
+        <Button
           onClick={this.abandonClaim.bind(this)}
           icon="icon-unlock-alt"
           title={__("Unlock")}
@@ -24,7 +24,7 @@ class TransactionListItem extends React.PureComponent {
       );
     } else {
       return (
-        <Link
+        <Button
           onClick={this.abandonClaim.bind(this)}
           icon="icon-trash"
           title={__("Revoke")}
@@ -92,23 +92,23 @@ class TransactionListItem extends React.PureComponent {
         </td>
         <td>
           {reward && (
-            <Link navigate="/rewards">
+            <Button navigate="/rewards">
               {__("Reward: %s", reward.reward_title)}
-            </Link>
+            </Button>
           )}
           {name &&
             claimId && (
-              <Link
+              <Button
                 className="button-text"
                 navigate="/show"
                 navigateParams={{ uri: lbryuri.build({ name, claimId }) }}
               >
                 {name}
-              </Link>
+              </Button>
             )}
         </td>
         <td>
-          <LinkTransaction id={txid} />
+          <ButtonTransaction id={txid} />
         </td>
       </tr>
     );

@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import { CreditAmount } from "component/common";
 
 type Props = {
@@ -31,7 +31,7 @@ const RewardSummary = (props: Props) => {
         )}
       </div>
       <div className="card__actions">
-        <Link
+        <Button
           button="primary"
           navigate="/rewards"
           label={__("Claim Rewards")}

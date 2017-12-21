@@ -3,7 +3,7 @@ import { BusyMessage } from "component/common";
 import RewardListClaimed from "component/rewardListClaimed";
 import RewardTile from "component/rewardTile";
 import SubHeader from "component/subHeader";
-import Link from "component/link";
+import Button from "component/button";
 
 class RewardsPage extends React.PureComponent {
   /*
@@ -51,7 +51,11 @@ class RewardsPage extends React.PureComponent {
               </p>
             </div>
             <div className="card__content">
-              <Link onClick={doAuth} button="primary" label="Prove Humanity" />
+              <Button
+                onClick={doAuth}
+                button="primary"
+                label="Prove Humanity"
+              />
             </div>
           </section>
         );
@@ -80,7 +84,7 @@ class RewardsPage extends React.PureComponent {
                 __("Please enjoy free content in the meantime!")}
             </p>
             <p>
-              <Link
+              <Button
                 onClick={() => navigate("/discover")}
                 button="primary"
                 label="Return Home"

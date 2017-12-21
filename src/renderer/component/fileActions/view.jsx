@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import FileDownloadLink from "component/fileDownloadLink";
 import * as modals from "constants/modal_types";
 
@@ -14,7 +14,7 @@ class FileActions extends React.PureComponent {
       <section className="card__actions">
         <FileDownloadLink uri={uri} />
         {showDelete && (
-          <Link
+          <Button
             button="text"
             icon="icon-trash"
             label={__("Remove")}
@@ -23,7 +23,7 @@ class FileActions extends React.PureComponent {
           />
         )}
         {!claimIsMine && (
-          <Link
+          <Button
             button="text"
             icon="icon-flag"
             href={`https://lbry.io/dmca?claim_id=${claimId}`}
@@ -31,7 +31,7 @@ class FileActions extends React.PureComponent {
             label={__("report")}
           />
         )}
-        <Link
+        <Button
           button="primary"
           icon="icon-gift"
           label={__("Support")}
@@ -40,7 +40,7 @@ class FileActions extends React.PureComponent {
           navigateParams={{ uri, tab: "tip" }}
         />
         {claimIsMine && (
-          <Link
+          <Button
             button="alt"
             icon="icon-edit"
             label={__("Edit")}

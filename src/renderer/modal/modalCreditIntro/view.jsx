@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "modal/modal";
 import { CreditAmount, CurrencySymbol } from "component/common";
-import Link from "component/link/index";
+import Button from "component/button/index";
 
 const ModalCreditIntro = props => {
   const { closeModal, totalRewardValue, currentBalance, addBalance } = props;
@@ -14,8 +14,7 @@ const ModalCreditIntro = props => {
           {__("Computer Wizard Needs Tokens Badly")}
         </h3>
         <p>
-          Some actions require{" "} LBRY credits
-          (<em>
+          Some actions require LBRY credits (<em>
             <CurrencySymbol />
           </em>), the blockchain token that powers the LBRY network.
         </p>
@@ -36,12 +35,12 @@ const ModalCreditIntro = props => {
         </p>
 
         <div className="modal__buttons">
-          <Link
+          <Button
             button="primary"
             onClick={addBalance}
             label={__("Get Credits")}
           />
-          <Link
+          <Button
             button="alt"
             onClick={closeModal}
             label={

@@ -6,7 +6,7 @@ import SubHeader from "component/subHeader";
 import CategoryList from "component/common/category-list";
 import Page from "component/common/page";
 
-class DiscoverPage extends React.PureComponent {
+class DiscoverPage extends React.Component {
   componentWillMount() {
     this.props.fetchFeaturedUris();
   }
@@ -17,26 +17,29 @@ class DiscoverPage extends React.PureComponent {
         typeof featuredUris === "object" && Object.keys(featuredUris).length,
       failedToLoad = !fetchingFeaturedUris && !hasContent;
 
-    // {!hasContent &&
-    //   fetchingFeaturedUris && (
-    //     <BusyMessage message={__("Fetching content")} />
-    //   )}
-    //   {hasContent &&
-    //     Object.keys(featuredUris).map(category => {
-    //       return featuredUris[category].length ? (
-    //         <CategoryList
-    //         key={category}
-    //         category={category}
-    //         names={featuredUris[category]}
-    //         />
-    //       ) : (
-    //         ""
-    //       );
-    //     })}
-    //     {failedToLoad && (
-    //       <div className="empty">{__("Failed to load landing content.")}</div>
-    //     )}
-    return <Page title="Discover" />;
+    return (
+      <Page title="Discover">
+        {!hasContent &&
+          fetchingFeaturedUris && (
+            <BusyMessage message={__("Fetching content")} />
+          )}
+        {hasContent &&
+          Object.keys(featuredUris).map(category => {
+            return featuredUris[category].length ? (
+              <CategoryList
+                key={category}
+                category={category}
+                names={featuredUris[category]}
+              />
+            ) : (
+              ""
+            );
+          })}
+        {failedToLoad && (
+          <div className="empty">{__("Failed to load landing content.")}</div>
+        )}
+      </Page>
+    );
   }
 }
 

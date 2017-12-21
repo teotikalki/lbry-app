@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import { FileTile } from "component/fileTile";
 import { BusyMessage, Thumbnail } from "component/common.js";
 import FileList from "component/fileList";
@@ -24,7 +24,7 @@ class FileListDownloaded extends React.PureComponent {
         content = (
           <span>
             {__("You haven't downloaded anything from LBRY yet. Go")}{" "}
-            <Link
+            <Button
               onClick={() => navigate("/discover")}
               label={__("search for your first download")}
             />!

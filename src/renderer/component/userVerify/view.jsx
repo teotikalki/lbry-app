@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import CardVerify from "component/cardVerify";
 import lbryio from "lbryio.js";
 
@@ -65,7 +65,7 @@ class UserVerify extends React.PureComponent {
               {__(
                 "A $1 authorization may temporarily appear with your provider."
               )}{" "}
-              <Link
+              <Button
                 href="https://lbry.io/faq/identity-requirements"
                 label={__("Read more about why we do this.")}
               />
@@ -84,14 +84,14 @@ class UserVerify extends React.PureComponent {
             </p>
             <p>
               {__("Some account minimums apply.")}{" "}
-              <Link
+              <Button
                 href="https://lbry.io/faq/youtube"
                 label={__("Read more.")}
               />
             </p>
           </div>
           <div className="card__actions">
-            <Link
+            <Button
               href="https://api.lbry.io/yt/connect"
               button="alt"
               icon="icon-youtube"
@@ -102,7 +102,7 @@ class UserVerify extends React.PureComponent {
             <div className="meta">
               This will not automatically refresh after approval. Once you have
               synced your account, just navigate away or click{" "}
-              <Link navigate="/rewards" label="here" />.
+              <Button navigate="/rewards" label="here" />.
             </div>
           </div>
         </section>
@@ -123,7 +123,7 @@ class UserVerify extends React.PureComponent {
             </p>
           </div>
           <div className="card__actions">
-            <Link
+            <Button
               href="https://chat.lbry.io"
               button="alt"
               icon="icon-comments"
@@ -143,7 +143,7 @@ class UserVerify extends React.PureComponent {
             </p>
           </div>
           <div className="card__actions">
-            <Link
+            <Button
               onClick={() => navigate("/discover")}
               button="alt"
               label={__("Skip Rewards")}

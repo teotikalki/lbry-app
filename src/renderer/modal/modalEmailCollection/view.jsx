@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "modal/modal";
-import Link from "component/link/index";
+import Button from "component/button/index";
 import UserEmailNew from "component/userEmailNew";
 import UserEmailVerify from "component/userEmailVerify";
 
@@ -9,7 +9,7 @@ class ModalEmailCollection extends React.PureComponent {
     const { closeModal, email, user } = this.props;
 
     const cancelButton = (
-      <Link button="text" onClick={closeModal} label={__("Not Now")} />
+      <Button button="text" onClick={closeModal} label={__("Not Now")} />
     );
 
     if (!user.has_verified_email && !email) {
@@ -32,9 +32,7 @@ class ModalEmailCollection extends React.PureComponent {
     return (
       <Modal type="custom" isOpen={true} contentLabel="Email">
         <section>
-          <h3 className="modal__header">
-            Can We Stay In Touch?
-          </h3>
+          <h3 className="modal__header">Can We Stay In Touch?</h3>
           {this.renderInner()}
         </section>
       </Modal>

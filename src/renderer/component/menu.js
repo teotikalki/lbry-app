@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Icon } from "./common.js";
-import Link from "component/link";
+import Button from "component/button";
 
 export class DropDownMenuItem extends React.PureComponent {
   static propTypes = {
@@ -89,7 +89,7 @@ export class DropDownMenu extends React.PureComponent {
     }
     return (
       <div className="menu-container">
-        <Link
+        <Button
           ref={span => (this._menuButton = span)}
           button="text"
           icon="icon-ellipsis-v"

@@ -2,7 +2,7 @@ import React from "react";
 import ToolTip from "component/tooltip.js";
 import FileCard from "component/fileCard";
 import { Icon } from "component/common.js";
-import Link from "component/link";
+import Button from "component/button";
 
 // TODO I can use refs
 import ReactDOM from "react-dom";
@@ -179,7 +179,7 @@ class CategoryList extends React.PureComponent {
       <div className="card-row card-row--small">
         <h3 className="card-row__header">
           {categoryLink ? (
-            <Link
+            <Button
               className="button-text no-underline"
               label={category}
               navigate="/show"
@@ -200,27 +200,27 @@ class CategoryList extends React.PureComponent {
               />
             )}
         </h3>
+        {this.state.canScrollPrevious && (
+          <div className="card-row__nav card-row__nav--left">
+            <a
+              className="card-row__scroll-button"
+              onClick={this.handleScrollPrevious.bind(this)}
+            >
+              <Icon icon="icon-chevron-left" />
+            </a>
+          </div>
+        )}
+        {this.state.canScrollNext && (
+          <div className="card-row__nav card-row__nav--right">
+            <a
+              className="card-row__scroll-button"
+              onClick={this.handleScrollNext.bind(this)}
+            >
+              <Icon icon="icon-chevron-right" />
+            </a>
+          </div>
+        )}
         <div className="card-row__scrollhouse">
-          {this.state.canScrollPrevious && (
-            <div className="card-row__nav card-row__nav--left">
-              <a
-                className="card-row__scroll-button"
-                onClick={this.handleScrollPrevious.bind(this)}
-              >
-                <Icon icon="icon-chevron-left" />
-              </a>
-            </div>
-          )}
-          {this.state.canScrollNext && (
-            <div className="card-row__nav card-row__nav--right">
-              <a
-                className="card-row__scroll-button"
-                onClick={this.handleScrollNext.bind(this)}
-              >
-                <Icon icon="icon-chevron-right" />
-              </a>
-            </div>
-          )}
           <div ref="rowitems" className="card-row__items">
             {names &&
               names.map(name => (

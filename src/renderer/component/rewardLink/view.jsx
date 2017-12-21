@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "modal/modal";
-import Link from "component/link";
+import Button from "component/button";
 
 const RewardLink = props => {
   const {
@@ -15,7 +15,7 @@ const RewardLink = props => {
 
   return (
     <div className="reward-link">
-      <Link
+      <Button
         button={button}
         disabled={isPending}
         label={

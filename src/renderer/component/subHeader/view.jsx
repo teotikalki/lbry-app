@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "component/link";
+import Button from "component/button";
 import classnames from "classnames";
 
 const SubHeader = props => {
@@ -9,7 +9,7 @@ const SubHeader = props => {
 
   for (let link of Object.keys(subLinks)) {
     links.push(
-      <Link
+      <Button
         onClick={event => navigate(`/${link}`, event)}
         key={link}
         className={
@@ -17,7 +17,7 @@ const SubHeader = props => {
         }
       >
         {subLinks[link]}
-      </Link>
+      </Button>
     );
   }
 

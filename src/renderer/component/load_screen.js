@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import lbry from "../lbry.js";
 import { BusyMessage, Icon } from "./common.js";
-import Link from "component/link";
+import Button from "component/button";
 
 class LoadScreen extends React.PureComponent {
   static propTypes = {
