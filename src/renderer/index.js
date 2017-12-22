@@ -114,8 +114,11 @@ var init = function() {
     autoUpdater.on("update-not-available", () => {
       console.log("Update not available");
     });
-    autoUpdater.on("update-downloaded", () => {
+    autoUpdater.on("update-downloaded", (e, arg1, arg2) => {
       console.log("Update downloaded");
+      console.log("event:", e);
+      console.log("arg1:", e);
+      console.log(("arg2": e));
       app.store.dispatch(doAutoUpdate());
     });
   }
