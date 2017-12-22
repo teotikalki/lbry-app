@@ -39,6 +39,8 @@ if (isDevelopment) {
 
 // For now, log info messages in production for easier debugging of built apps
 log.transports.file.level = 'info';
+autoUpdater.autoDownload = true;
+
 
 // Misc constants
 const LATEST_RELEASE_API_URL = 'https://api.github.com/repos/lbryio/lbry-app/releases/latest';
