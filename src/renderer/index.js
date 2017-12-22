@@ -20,6 +20,7 @@ const { autoUpdater } = remote.require("electron-updater");
 const app = require("./app");
 
 autoUpdater.logger = remote.require("electron-log");
+autoUpdater.autoDownload = false;
 
 // Workaround for https://github.com/electron-userland/electron-webpack/issues/52
 if (process.env.NODE_ENV !== "development") {
@@ -105,7 +106,8 @@ document.addEventListener("click", event => {
 });
 
 const initialState = app.store.getState();
-
+window.autoUpdater = autoUpdater;
+window.ipcRenderer = ipcRenderer;
 var init = function() {
   if (["win32", "darwin"].includes(process.platform)) {
     autoUpdater.on("update-available", () => {
@@ -114,11 +116,10 @@ var init = function() {
     autoUpdater.on("update-not-available", () => {
       console.log("Update not available");
     });
-    autoUpdater.on("update-downloaded", (e, arg1, arg2) => {
+    autoUpdater.on("update-downloaded", (e, arg1) => {
       console.log("Update downloaded");
       console.log("event:", e);
       console.log("arg1:", e);
-      console.log(("arg2": e));
       app.store.dispatch(doAutoUpdate());
     });
   }
