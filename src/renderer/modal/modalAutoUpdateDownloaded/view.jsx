@@ -7,6 +7,8 @@ const { ipcRenderer } = require("electron");
 
 class ModalAutoUpdateDownloaded extends React.PureComponent {
   render() {
+    const { closeModal } = this.props;
+
     return (
       <Modal
         isOpen={true}
@@ -17,6 +19,7 @@ class ModalAutoUpdateDownloaded extends React.PureComponent {
         onConfirmed={() => {
           ipcRenderer.send("autoUpdate");
         }}
+        onAborted={closeModal}
       >
         <section>
           <h3 className="text-center">{__("LBRY Leveled Up")}</h3>
